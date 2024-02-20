@@ -1,6 +1,6 @@
 /* Fonts
 =========== */
-@import url("https://fonts.googleapis.com/css?family=Open+Sans|Inter:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap");
 
 :root {
   --color-earth-primary: #4EA447;
@@ -12,42 +12,47 @@
   --color-quantiary: #0279c8;
   --color-fff: #fff;
   --color-000: #000;
-  --ff-primary: "Inter", sans-serif;
+  --ff-primary: "Roboto", sans-serif;
   --ff-secondary: "Open Sans", sans-serif;
   --fw-reg: 400;
   --fw-bold: 700;
   --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
   --shadow-dark: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --radius: 0.5rem;
+  --transition: all 0.2s;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 body {
+  position: relative;
   font-family: var(--ff-secondary);
   letter-spacing: 0.05rem;
   background-color: var(--color-secondary);
   color: var(--color-tertiary);
 }
-/* main {
-  min-height: calc(100vh - 3rem);
-  display: grid;
-  place-items: center;
-} */
-/* header {
-  background-color: var(--color-fff);
+header {
+  background-color: rgba(255,255,255,0.3);
   box-shadow: var(--shadow-light);
-} */
-/* ul {
+}
+ul {
   align-items: center;
   justify-content: space-between;
   list-style: none;
-} */
-/* a {
+}
+a {
   display: block;
-  font-size: 1.2rem;
   text-decoration: none;
   color: var(--color-earth-secondary);
-  transition: all 0.2s;
-} */
+  transition: var(--transition);
+}
+nav li > a {
+  font-size: 1.2rem;
+  color: var(--color-fff);
+}
 .title {
+  padding: 2rem 0 2.5rem;
   text-align: center;
 }
 .title::after {
@@ -60,11 +65,17 @@ body {
 }
 h1 {
   color: var(--color-earth-secondary);
+  font-family: var(--ff-primary);
   font-weight: var(--fw-bold);
+}
+p {
+  max-width: 76ch;
+  padding: 1rem 3rem;
+  margin: 0.5rem auto;
+  font-size: 1.2em;
 }
 .btn {
   display: inline-block;
-  /* min-width: 11.4rem; */
   padding: 0.5rem;
   border: 0.1rem solid var(--color-tertiary);
   border-radius: 1rem;
@@ -73,7 +84,7 @@ h1 {
   letter-spacing: 0.05rem;
   background-color: var(--color-secondary);
   color: var(--color-tertiary);
-  transition: all 0.2s;
+  transition: var(--transition);
 }
 .visually-hidden {
   clip-path: inset(50%);
@@ -96,70 +107,146 @@ img {
   padding: 0.7rem;
   border-radius: 50%;
   background-color: transparent;
-  transition: all 0.2s;
+  transition: var(--transition);
 }
 
-/* Menu 
-===============*/
-h2 {
-  font-size: 1rem;
-  text-transform: capitalize;
-  color: var(--color-earth-secondary);
-}
-h3 {
-  font-size: 1rem;
-  color: var(--color-earth-primary);
-}
-p {
-  font-size: 0.9rem;
-  color: var(--color-primary);
-}
-.menu {
-  padding: 5rem 0;
-}
-.btn__container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.7rem;
-  margin: 2.5rem auto 3rem;
-}
-.btn__filter {
-  min-width: 6rem;
-  border: 0.15rem solid var(--color-earth-secondary);
-  border-radius: 0.5rem;
-  text-transform: capitalize;
-  color: var(--color-earth-secondary);
+/* Nav 
+=========*/
+.nav__mobile-toggle {
   cursor: pointer;
-  transition: all 0.2s;
+  font-size: 1.5rem;
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-fff);
+  transition: var(--transition);
 }
-.menu .section-center {
+.nav__fixed .nav__mobile-toggle {
+  color: var(--color-earth-secondary);
+}
+
+/* Scroll
+============ */
+/* used when .hero is inside header, using JS to fix it */
+header {
+  min-height: 100vh;
+  background: linear-gradient(rgba(38,57,124,0.5), rgba(0,0,0,0.7)), url(https://res.cloudinary.com/do9qt3sjt/image/upload/v1708223397/hero-bcg_tdypyu.jpg) center/cover no-repeat;
+}
+/* used when .hero is inside header, using JS to fix it */
+.header__outer-shell {
+  background-color: rgba(255,255,255,0.3);
+}
+/* used when .hero is inside header, using JS to fix it */
+.nav__fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-fff);
+  z-index: 1;
+}
+.nav__fixed nav li > a {
+  color: var(--color-earth-secondary);
+}
+section {
+  min-height: 50rem;
+  padding: 3rem 0;
+}
+section:nth-child(odd) {
+  background-color: rgba(78,164,71,0.1);
+}
+section ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 1rem 2rem;
+  margin: 0 1rem;
 }
-.menu-item {
-  display: flex;
-  margin-block-end: 1.5rem;
+/* used when .hero is outside header, nav is statically fixed, i.e. no JS */
+/* .hero {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(rgba(38,57,124,0.5), rgba(0,0,0,0.7)), url(https://res.cloudinary.com/do9qt3sjt/image/upload/v1708223397/hero-bcg_tdypyu.jpg) center/cover no-repeat;
+} */
+/* used when .hero is inside header, using JS to fix it */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
 }
-.menu-item__info {
-  margin: 1rem auto;
+.hero__content {
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
 }
-.menu-item__info header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-block-end: 0.5rem;
-  border-block-end: 0.1rem solid var(--color-earth-secondary);
-  margin-block-end: 1rem;
+h1 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  color: var(--color-fff);
 }
-.menu-item__photo {
-  width: 100%;
-  height: 12rem;
-  object-fit: cover;
-  border: 0.3rem solid var(--color-earth-primary);
-  border-radius: 0.5rem;
+.hero__content p,
+.hero__content a {
+  color: var(--color-fff);
+}
+.hero__content p {
+  /* use sparingly due to performance hit */
+  text-wrap: pretty;
+}
+.hero a {
+  display: grid;
+  place-items: center;
+  height: 3.5rem;
+  width: 13rem;
+  border: 0.15rem solid var(--color-fff);
+  margin: 0 auto;
+}
+#projects li {
+  font-size: 1.4rem;
+}
+#contact a {
+  display: inline;
+}
+.top-link {
+  visibility: hidden;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: grid;
+  place-items: center;
+  height: 3.2rem;
+  width: 3.2rem;
+  border: 0.1rem solid var(--color-fff);
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  background-color: var(--color-earth-secondary);
+  color: var(--color-fff);
+  animation: bounce 2.5s ease-in-out infinite;
+}
+.top-link__show {
+  visibility: visible;
+}
+footer {
+  padding: 3rem 0;
+  text-align: center;
+  background-color: var(--color-earth-secondary);
+  color: var(--color-fff);
+}
+footer p {
+  margin: 0 auto;
+  /* use sparingly due to performance hit */
+  text-wrap: balance;
+}
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @media(max-width: 640px) {
@@ -167,9 +254,16 @@ p {
     flex-direction: column;
   }
 }
+@media(min-width: 577px) {
+  section ul {
+    justify-content: space-between;
+    width: 25rem;
+    margin: 3rem auto 0;
+  }
+}
 @media(min-width: 641px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 4rem;
   }
   img {
     width: 16rem;
@@ -187,28 +281,65 @@ p {
     max-width: 17rem;
   }
 }
-/* @media(min-width: 769px) {
-} */
+@media(max-width: 768px) {
+ .header__mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  .nav__main {
+    display: none;
+  }
+  .nav__mobile-toggle__active {
+    transform: rotate(-90deg);
+  }
+  .nav__mobile-nav__show {
+    display: block;
+  }
+  .nav__main ul li a {
+    padding: 0.5rem 1rem;
+  }
+}
+@media(min-width: 769px) {
+  ul {
+    display: flex;
+  }
+  nav {
+    width: 25rem;
+  }
+  .header__container {
+    max-width: 80rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+  .nav__mobile-toggle {
+    display: none;
+  }
+}
 @media(min-width: 1281px) {
   .menu .section-center {
     justify-content: space-between;
   }
 }
 @media(hover: hover) and (pointer: fine) {
-  a:hover,
-  a:focus-visible {
+  nav a:hover,
+  nav a:focus-visible {
     text-decoration-line: underline;
     text-underline-position: under;
-    color: var(--color-earth-primary);
   }
   .fab:hover,
   .fab:focus-visible {
     background-color: var(--color-earth-primary);
     color: var(--color-fff);
   }
-  .btn__filter:hover,
-  .btn__filter:focus-visible {
-    background-color: var(--color-earth-secondary);
-    color: var(--color-fff);
+  .hero a:hover,
+  .hero a:focus-visible {
+    background-color: var(--color-fff);
+    color: var(--color-earth-secondary);
+    text-decoration: none;
   }
 }
